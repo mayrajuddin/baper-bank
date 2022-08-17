@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <section class=" my-8 p-10">
+        <div class="w-3/4 mx-auto grid grid-cols-3 gap-4">
+            <div class="bg-orange-400 p-4">
+                <h4 class="text-3xl">Deposit</h4>
+                <h5 class="text-2xl">$<span id="depo-bls">1200</span></h5>
+            </div>
+            <div class="bg-lime-500 p-4">
+                <h4 class="text-3xl">Withdraw</h4>
+                <h5 class="text-2xl">$<span id="withdrw-bls">00</span></h5>
+            </div>
+            <div class="bg-amber-500 p-4">
+                <h4 class="text-3xl">Balance</h4>
+                <h5 class="text-2xl">$<span id="total-bls">1200</span></h5id>
+            </div>
+        </div>
+    </section>
+    <section class="bg-sky-200 p-10">
+        <div class="w-3/4 mx-auto grid grid-cols-2 gap-4">
+            <div class="bg-violet-500 p-4">
+                <h4 class="text-3xl pb-4">Please Deposit</h4>
+                <input type="text" name="" id="depo-field" placeholder="$ Ammount you want to Deposit"
+                    class="p-2 block mb-4 w-3/4">
+                <button type="button" id="depo-btn" class="bg-blue-200 py-2 px-6 capitalize ">Deposit</button>
+            </div>
+            <div class="bg-green-500 p-4">
+                <h4 class="text-3xl pb-4">Please Withdraw</h4>
+                <input type="text" name="" id="withdrw-field" placeholder="$ Ammount you want to Withdraw"
+                    class="p-2 block mb-4 w-3/4">
+                <button type="button" id="withdrw-btn" class="bg-blue-200 py-2 px-6 capitalize ">Withdraw</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById('withdrw-btn').addEventListener('click', function () {
+            // take value form input and convert string to num 
+            // console.log('clicked btn')
+            const withdrawField = document.getElementById('withdrw-field');
+            const withdrawValueString = withdrawField.value;
+            // console.log(withdrawValueString)
+            const withdrawValue = parseFloat(withdrawValueString)
+            // console.log(typeof withdrawValue)
+
+            //get previous withdraw ammount
+            const withdrawElement = document.getElementById('withdrw-bls');
+            const withdrawString = withdrawElement.innerText;
+            const withdrawAmmount = parseFloat(withdrawString);
+            const currentWithdraw = withdrawAmmount + withdrawValue;
+            withdrawElement.innerText = currentWithdraw;
+            // 
+            const totalBalanceElement = document.getElementById('total-bls');
+            const totalBalanceString = totalBalanceElement.innerText;
+            const totalBalace = parseFloat(totalBalanceString);
+            const finalAmmount = totalBalace - currentWithdraw;
+            totalBalanceElement.innerText = finalAmmount
+            withdrawField.value = '';
+        })
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
